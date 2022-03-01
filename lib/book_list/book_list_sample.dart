@@ -13,7 +13,7 @@ class BookListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('買い物リスト'),
+        title: const Text('リスト'),
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -28,29 +28,33 @@ class BookListPage extends StatelessWidget {
         ],
 
       ),
-      body: Center(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: _usersStream,
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Text("Loading");
-            }
+      body: Column(
+        children: [
+          Center(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: _usersStream,
+              builder:
+                  (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Text("Loading");
+                }
 
-            return ListView(
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data =
-                document.data() as Map<String, dynamic>;
-                return ListTile(
-                  title: Text(data['title']),
-                  subtitle: Text(data['author']),
-                  trailing: Text(data['test']),
+                return ListView(
+                  children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                    Map<String, dynamic> data =
+                    document.data() as Map<String, dynamic>;
+                    return ListTile(
+                      title: Text(data['title']),
+                      subtitle: Text(data['author']),
+                      trailing: Text(data['test']),
 
+                    );
+                  }).toList(),
                 );
-              }).toList(),
-            );
-          },
-        ),
+              },
+            ),
+          ),
+        ],
       ),
       floatingActionButton: const FloatingActionButton(
         onPressed: null,
