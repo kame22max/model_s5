@@ -13,7 +13,7 @@ class BookListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('買い物'),
+        title: const Text('買い物リスト'),
         actions: <Widget>[
           IconButton(
             onPressed: () {
