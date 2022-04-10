@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:model_s4/login.dart';
 import 'book_list/book_list_sample.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -14,9 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme:  ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(), // ライト用テーマ
+      darkTheme: ThemeData.dark(), // ダーク用テーマ
+      themeMode: ThemeMode.system, // モードをシステム設定にする
       title: 'BookListSample',
-      home: BookListPage(),
+      home: Login(),
     );
   }
+
 }
+

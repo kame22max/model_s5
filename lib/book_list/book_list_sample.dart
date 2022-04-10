@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:model_s4/settings.dart';
+
 
 class BookListPage extends StatelessWidget {
   final Stream<QuerySnapshot> _usersStream =
@@ -17,45 +17,42 @@ class BookListPage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Setting_Page(),
-                  )
-              );
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => Setting_Page(),
+              //     )
+              // );
             },
             icon: const Icon(Icons.settings),
           ),
         ],
 
       ),
-      body: Column(
-        children: [
-          Center(
-            child: StreamBuilder<QuerySnapshot>(
-              stream: _usersStream,
-              builder:
-                  (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Text("Loading");
-                }
+      body:Center(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: _usersStream,
+                builder:
+                    (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text("Loading");
+                  }
 
-                return ListView(
-                  children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                    Map<String, dynamic> data =
-                    document.data() as Map<String, dynamic>;
-                    return ListTile(
-                      title: Text(data['title']),
-                      subtitle: Text(data['author']),
-                      trailing: Text(data['test']),
+                  return ListView(
+                    children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                      document.data() as Map<String, dynamic>;
+                      return ListTile(
+                        title: Text(data['title']),
+                        subtitle: Text(data['author']),
+                        trailing: Text(data['test']),
 
-                    );
-                  }).toList(),
-                );
-              },
+                      );
+                    }).toList(),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
-      ),
+
       floatingActionButton: const FloatingActionButton(
         onPressed: null,
         tooltip: 'Increment',
