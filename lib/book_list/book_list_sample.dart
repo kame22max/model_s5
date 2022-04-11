@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:model_s4/book_list/book_list_model.dart';
 import 'package:provider/provider.dart';
 
+import '../domain/book.dart';
 
 class BookListPage extends StatelessWidget {
-
-
   BookListPage({Key? key}) : super(key: key);
 
   @override
@@ -19,20 +18,31 @@ class BookListPage extends StatelessWidget {
           title: const Text('リスト'),
           actions: <Widget>[
             IconButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               icon: const Icon(Icons.account_circle),
             ),
           ],
         ),
-        body:Center(
+        body: Center(
           child: Consumer<BookListModel>(builder: (context, model, child) {
-            final List<Book> books = model.books;
-            return ListView.builder(itemBuilder: itemBuilder)
+            final List<Book>? books = model.books;
+
+            if (books == null) {
+              return CircularProgressIndicator();
+            }
+            final List<Widget> widgets = books!
+                .map(
+                  (book) => ListTile(
+                    title: Text(book.title),
+                    subtitle: Text(book.author),
+                  ),
+                )
+                .toList();
+            return ListView(
+              children: widgets,
+            );
           }),
-
-              ),
-
+        ),
         floatingActionButton: const FloatingActionButton(
           onPressed: null,
           tooltip: 'Increment',
