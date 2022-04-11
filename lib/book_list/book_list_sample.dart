@@ -17,22 +17,20 @@ class BookListPage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => Setting_Page(),
-              //     )
-              // );
             },
             icon: const Icon(Icons.settings),
           ),
         ],
-
       ),
       body:Center(
               child: StreamBuilder<QuerySnapshot>(
                 stream: _usersStream,
                 builder:
                     (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if(snapshot.hasError){
+                    return const Text("エラー");
+                  }
+
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Text("Loading");
                   }
