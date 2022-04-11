@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:model_s4/book_list/book_list_model.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +29,7 @@ class BookListPage extends StatelessWidget {
             if (books == null) {
               return CircularProgressIndicator();
             }
-            final List<Widget> widgets = books!
+            final List<Widget> widgets = books
                 .map(
                   (book) => ListTile(
                     title: Text(book.title),

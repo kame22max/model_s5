@@ -10,14 +10,14 @@ class BookListModel extends ChangeNotifier {
 
   void fetchBookList() {
     _usersStream.listen((QuerySnapshot snapshots) {
-      final List<Book> Books = snapshots.docs.map((DocumentSnapshot document) {
+      final List<Book> books = snapshots.docs.map((DocumentSnapshot document) {
         Map<String, dynamic> data = document.data() as Map<String, dynamic>;
         final String title = data["title"];
         final String author = data["author"];
         final String test = data["test"];
         return Book(title,author,test);
       }).toList();
-      books = books;
+      this.books = books;
       notifyListeners();
     });
   }
