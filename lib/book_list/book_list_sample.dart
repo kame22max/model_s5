@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:model_s4/book_list/book_list_model.dart';
+import 'package:model_s4/domain/book.dart';
 import 'package:provider/provider.dart';
 
-import '../domain/book.dart';
-
 class BookListPage extends StatelessWidget {
-  BookListPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<BookListModel>(
-      create: (_) => BookListModel(),
+      create: (_) => BookListModel()..fetchBookList(),
       child: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          title: const Text('リスト'),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.account_circle),
-            ),
-          ],
+          title: Text('本一覧'),
         ),
         body: Center(
           child: Consumer<BookListModel>(builder: (context, model, child) {
@@ -29,6 +19,7 @@ class BookListPage extends StatelessWidget {
             if (books == null) {
               return CircularProgressIndicator();
             }
+
             final List<Widget> widgets = books
                 .map(
                   (book) => ListTile(
@@ -42,11 +33,14 @@ class BookListPage extends StatelessWidget {
             );
           }),
         ),
-        floatingActionButton: const FloatingActionButton(
-          onPressed: null,
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-        ),
+        floatingActionButton:
+            Consumer<BookListModel>(builder: (context, model, child) {
+          return FloatingActionButton(
+            onPressed: () {},
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+          );
+        }),
       ),
     );
   }
