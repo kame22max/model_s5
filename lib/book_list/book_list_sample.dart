@@ -33,11 +33,9 @@ class BookListPage extends StatelessWidget {
             );
           }),
         ),
-        floatingActionButton:
-            Consumer<BookListModel>(builder: (context, model, child) {
+        floatingActionButton: Consumer<BookListModel>(builder: (context, model, child) {
           return FloatingActionButton(
             onPressed: () {},
-            tooltip: 'Increment',
             child: Icon(Icons.add),
           );
         }),
