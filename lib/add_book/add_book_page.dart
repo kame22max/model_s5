@@ -41,9 +41,9 @@ class AddBookPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () async {
                     try {
-                      final snackBar = SnackBar(
+                      var snackBar = const SnackBar(
                         backgroundColor: Colors.green,
-                        content: const Text(
+                        content: Text(
                           '本を追加しました'
                         ),
                       );
