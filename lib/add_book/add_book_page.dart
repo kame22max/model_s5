@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:model_s4/add_book/add_book_model.dart';
 import 'package:model_s4/book_list/book_list_model.dart';
 import 'package:model_s4/domain/book.dart';
 import 'package:provider/provider.dart';
@@ -6,42 +7,63 @@ import 'package:provider/provider.dart';
 class AddBookPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<BookListModel>(
-      create: (_) => BookListModel()..fetchBookList(),
+    return ChangeNotifierProvider<AddBookModel>(
+      create: (_) => AddBookModel(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('本を追加する'),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: const Text('本を追加'),
         ),
         body: Center(
-          child: Consumer<BookListModel>(
-            builder: (context, model, child) {
-              final List<Book>? books = model.books;
-
-              if (books == null) {
-                return const CircularProgressIndicator();
-              }
-
-              final List<Widget> widgets = books
-                  .map(
-                    (book) => ListTile(
-                      title: Text(book.title),
-                      subtitle: Text(book.author),
-                    ),
-                  )
-                  .toList();
-              return ListView(
-                children: widgets,
-              );
-            },
-          ),
-        ),
-        floatingActionButton: Consumer<BookListModel>(
-          builder: (context, model, child) {
-            return FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.add),
+          child: Consumer<AddBookModel>(builder: (context, model, child) {
+            return Column(
+              children: [
+                TextField(
+                  decoration: const InputDecoration(hintText: '本のタイトル'),
+                  onChanged: (text) {
+                    model.title = text;
+                  },
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  decoration: const InputDecoration(hintText: '本の著者'),
+                  onChanged: (text) {
+                    model.author = text;
+                  },
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      final snackBar = SnackBar(
+                        backgroundColor: Colors.green,
+                        content: const Text(
+                          '本を追加しました'
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      await model.addbook();
+                    } catch (e) {
+                      final snackBar = SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text(
+                          e.toString(),
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                  },
+                  child: const Text("追加する"),
+                ),
+              ],
             );
-          },
+          }),
         ),
       ),
     );

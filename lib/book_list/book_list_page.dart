@@ -39,14 +39,15 @@ class BookListPage extends StatelessWidget {
         floatingActionButton: Consumer<BookListModel>(
           builder: (context, model, child) {
             return FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
+              onPressed: () async {
+                await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => AddBookPage(),
                     fullscreenDialog: true,
                   ),
                 );
+                model.fetchBookList();
               },
               child: const Icon(Icons.add),
             );
