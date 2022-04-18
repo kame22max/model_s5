@@ -76,7 +76,7 @@ class _LoginState extends State<Login> {
                           decoration: InputDecoration(
                             fillColor: const Color.fromARGB(12, 0, 0, 0),
                             filled: true,
-                            labelText: "Password",
+                            labelText: "パスワード",
                             suffixIcon: IconButton(
                               icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
                               onPressed: () {
