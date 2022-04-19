@@ -40,13 +40,26 @@ class BookListPage extends StatelessWidget {
           builder: (context, model, child) {
             return FloatingActionButton(
               onPressed: () async {
-                await Navigator.push(
+                //画面遷移
+                final bool? added = await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => AddBookPage(),
                     fullscreenDialog: true,
                   ),
                 );
+
+                if (added != null && added){
+                  var snackBar = const SnackBar(
+                    backgroundColor: Colors.green,
+                    content: Text(
+                      '本を追加しました',
+                      textAlign: TextAlign.center,
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                }
                 model.fetchBookList();
               },
               child: const Icon(Icons.add),

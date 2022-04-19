@@ -10,7 +10,7 @@ class AddBookModel extends ChangeNotifier {
     if (title == null || title == "") {
       throw '本のタイトルが入力されていません';
     }
-    if (author == null || author!.isEmpty) {
+    if (author == null || author == "") {
       throw '本の著者が入力されていません。';
     }
     //firebaseに追加

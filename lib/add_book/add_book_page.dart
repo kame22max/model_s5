@@ -41,14 +41,8 @@ class AddBookPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () async {
                     try {
-                      var snackBar = const SnackBar(
-                        backgroundColor: Colors.green,
-                        content: Text(
-                          '本を追加しました'
-                        ),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       await model.addbook();
+                      Navigator.of(context).pop(true);
                     } catch (e) {
                       final snackBar = SnackBar(
                         backgroundColor: Colors.red,
