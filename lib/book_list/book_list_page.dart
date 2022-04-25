@@ -25,6 +25,7 @@ class BookListPage extends StatelessWidget {
 
               final List<Widget> widgets = books
                   .map(
+
                     (book) => Slidable(
                       child: ListTile(
                         title: Text(book.title),
