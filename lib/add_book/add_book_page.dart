@@ -48,6 +48,7 @@ class AddBookPage extends StatelessWidget {
                         backgroundColor: Colors.red,
                         content: Text(
                           e.toString(),
+                          textAlign: TextAlign.center,
                         ),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);

@@ -3,6 +3,7 @@ import 'package:model_s4/add_book/add_book_page.dart';
 import 'package:model_s4/book_list/book_list_model.dart';
 import 'package:model_s4/domain/book.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class BookListPage extends StatelessWidget {
   @override
@@ -24,9 +25,34 @@ class BookListPage extends StatelessWidget {
 
               final List<Widget> widgets = books
                   .map(
-                    (book) => ListTile(
-                      title: Text(book.title),
-                      subtitle: Text(book.author),
+                    (book) => Slidable(
+                      child: ListTile(
+                        title: Text(book.title),
+                        subtitle: Text(book.author),
+                      ),
+                      endActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (BuildContext context) {
+                              //編集画面に遷移
+                            },
+                            backgroundColor: const Color(0xFFFE4A49),
+                            foregroundColor: Colors.white,
+                            icon: Icons.edit,
+                            label: '編集',
+                          ),
+                          SlidableAction(
+                            onPressed: (BuildContext context) {
+                              //「削除しますか？」って聞いて、「はい」だったら削除
+                            },
+                            backgroundColor: const Color(0xFF21B7CA),
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: '削除',
+                          ),
+                        ],
+                      ),
                     ),
                   )
                   .toList();
@@ -49,7 +75,7 @@ class BookListPage extends StatelessWidget {
                   ),
                 );
 
-                if (added != null && added){
+                if (added != null && added) {
                   var snackBar = const SnackBar(
                     backgroundColor: Colors.green,
                     content: Text(
@@ -58,7 +84,6 @@ class BookListPage extends StatelessWidget {
                     ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
                 }
                 model.fetchBookList();
               },
