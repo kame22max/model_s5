@@ -18,8 +18,18 @@ class EditBookModel extends ChangeNotifier {
   String? title;
   String? author;
 
+  void setTitle(String title){
+    this.title = title;
+    notifyListeners();
+  }
+
+  void setAuthor(String author){
+    this.author = author;
+    notifyListeners();
+  }
+
   bool isUpdate(){
-    return title != null && author != null;
+    return title != null || author != null;
 }
 
   Future update() async {

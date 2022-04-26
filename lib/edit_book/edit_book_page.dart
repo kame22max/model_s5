@@ -28,8 +28,8 @@ class EditBookPage extends StatelessWidget {
                   controller: model.titleController,
                   decoration: const InputDecoration(hintText: '本のタイトル'),
                   onChanged: (text) {
-                    model.title = text;
-                  },
+                    model.setTitle(text);
+                    },
                 ),
                 const SizedBox(
                   height: 8,
@@ -38,14 +38,15 @@ class EditBookPage extends StatelessWidget {
                   controller: model.authorController,
                   decoration: const InputDecoration(hintText: '本の著者'),
                   onChanged: (text) {
-                    model.author = text;
+                    model.setAuthor(text);
                   },
                 ),
                 const SizedBox(
                   height: 16,
                 ),
                 ElevatedButton(
-                onPressed: model.isUpdate()? () async {
+                onPressed: model.isUpdate()?
+                    () async {
                     try {
                       await model.update();
                       Navigator.of(context).pop(true);
