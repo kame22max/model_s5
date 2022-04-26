@@ -5,7 +5,10 @@ import 'package:model_s4/domain/book.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import '../edit_book/edit_book_page.dart';
+
 class BookListPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<BookListModel>(
@@ -35,8 +38,26 @@ class BookListPage extends StatelessWidget {
                         motion: const ScrollMotion(),
                         children: [
                           SlidableAction(
-                            onPressed: (BuildContext context) {
+                            onPressed: (BuildContext context) async {
                               //編集画面に遷移
+                              final bool? added = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EditBookPage(book),
+                                ),
+                              );
+
+                              if (added != null && added) {
+                                var snackBar = const SnackBar(
+                                  backgroundColor: Colors.green,
+                                  content: Text(
+                                    '本を編集しました',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              }
+                              model.fetchBookList();
                             },
                             backgroundColor: const Color(0xFFFE4A49),
                             foregroundColor: Colors.white,
