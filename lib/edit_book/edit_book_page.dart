@@ -6,6 +6,7 @@ import '../domain/book.dart';
 
 class EditBookPage extends StatelessWidget {
   final Book book;
+
   EditBookPage(this.book);
 
   @override
@@ -28,7 +29,7 @@ class EditBookPage extends StatelessWidget {
                   decoration: const InputDecoration(hintText: '本のタイトル'),
                   onChanged: (text) {
                     model.setTitle(text);
-                    },
+                  },
                 ),
                 const SizedBox(
                   height: 8,
@@ -44,22 +45,24 @@ class EditBookPage extends StatelessWidget {
                   height: 16,
                 ),
                 ElevatedButton(
-                onPressed: model.isUpdate()?
-                    () async {
-                    try {
-                      await model.update();
-                      Navigator.of(context).pop(model.title);
-                    } catch (e) {
-                      final snackBar = SnackBar(
-                        backgroundColor: Colors.red,
-                        content: Text(
-                          e.toString(),
-                          textAlign: TextAlign.center,
-                        ),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
-                  } : null,
+                  onPressed: model.isUpdate()
+                      ? () async {
+                          try {
+                            await model.update();
+                            Navigator.of(context).pop(model.title);
+                          } catch (e) {
+                            final snackBar = SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Text(
+                                e.toString(),
+                                textAlign: TextAlign.center,
+                              ),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          }
+                        }
+                      : null,
                   child: const Text("更新する"),
                 ),
               ],
