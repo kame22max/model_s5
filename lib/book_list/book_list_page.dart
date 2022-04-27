@@ -16,6 +16,7 @@ class BookListPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('本一覧'),
+
         ),
         body: Center(
           child: Consumer<BookListModel>(
@@ -40,18 +41,18 @@ class BookListPage extends StatelessWidget {
                           SlidableAction(
                             onPressed: (BuildContext context) async {
                               //編集画面に遷移
-                              final bool? added = await Navigator.push(
+                              final String title = await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => EditBookPage(book),
                                 ),
                               );
 
-                              if (added != null && added) {
-                                var snackBar = const SnackBar(
+                              if (title != null ) {
+                                var snackBar = SnackBar(
                                   backgroundColor: Colors.green,
                                   content: Text(
-                                    '本を編集しました',
+                                    '$titleを編集しました',
                                     textAlign: TextAlign.center,
                                   ),
                                 );

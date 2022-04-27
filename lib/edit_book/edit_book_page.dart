@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:model_s4/add_book/add_book_model.dart';
 import 'package:model_s4/edit_book/edit_book_model.dart';
 import 'package:provider/provider.dart';
 
@@ -49,7 +48,7 @@ class EditBookPage extends StatelessWidget {
                     () async {
                     try {
                       await model.update();
-                      Navigator.of(context).pop(true);
+                      Navigator.of(context).pop(model.title);
                     } catch (e) {
                       final snackBar = SnackBar(
                         backgroundColor: Colors.red,

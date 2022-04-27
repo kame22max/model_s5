@@ -33,14 +33,11 @@ class EditBookModel extends ChangeNotifier {
 }
 
   Future update() async {
-    if (title == null || title == "") {
-      throw '本のタイトルが入力されていません';
-    }
-    if (author == null || author == "") {
-      throw '本の著者が入力されていません。';
-    }
+    this.title = titleController.text;
+    this.author = authorController.text;
+
     //firebaseに追加
-    await FirebaseFirestore.instance.collection('books').add(
+    await FirebaseFirestore.instance.collection('books').doc(book.id).update(
       {
         'title': title,
         'author': author,
