@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.light(), // ライト用テーマ
-      darkTheme: ThemeData.dark(), // ダーク用テーマ
+      darkTheme: ThemeData.light(), // ダーク用テーマ
       themeMode: ThemeMode.system, // モードをシステム設定にする
       title: 'BookListSample',
       home: Login(),

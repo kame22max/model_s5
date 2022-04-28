@@ -34,8 +34,36 @@ class BookListPage extends StatelessWidget {
                     .map(
                       (book) => Slidable(
                         child: ListTile(
+                          onTap: () async {
+                            //編集画面に遷移
+                            final String title = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditBookPage(book),
+                              ),
+                            );
+
+                            var snackBar = SnackBar(
+                              backgroundColor: Colors.green,
+                              content: Text(
+                                '$titleを編集しました',
+                                textAlign: TextAlign.center,
+                              ),
+                            );
+                            scaffoldMessengerKey.currentState
+                                ?.showSnackBar(snackBar);
+                            // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            model.fetchBookList();
+                          },
+                          onLongPress: () {
+                            //削除する。
+                          },
                           title: Text(book.title),
                           subtitle: Text(book.author),
+                          trailing: IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () {},
+                          ),
                         ),
                         endActionPane: ActionPane(
                           motion: const ScrollMotion(),
@@ -50,18 +78,17 @@ class BookListPage extends StatelessWidget {
                                   ),
                                 );
 
-                                  var snackBar = SnackBar(
-                                    backgroundColor: Colors.green,
-                                    content: Text(
-                                      '$titleを編集しました',
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  );
-                                  scaffoldMessengerKey.currentState
-                                      ?.showSnackBar(snackBar);
-                                  // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                var snackBar = SnackBar(
+                                  backgroundColor: Colors.green,
+                                  content: Text(
+                                    '$titleを編集しました',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                );
+                                scaffoldMessengerKey.currentState
+                                    ?.showSnackBar(snackBar);
+                                // ScaffoldMessenger.of(context).showSnackBar(snackBar);
                                 model.fetchBookList();
-                                
                               },
                               backgroundColor: const Color(0xFFFE4A49),
                               foregroundColor: Colors.white,
