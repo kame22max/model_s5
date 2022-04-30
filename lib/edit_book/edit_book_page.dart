@@ -16,8 +16,8 @@ class EditBookPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
+          // backgroundColor: Colors.transparent,
+          // elevation: 0,
           title: const Text('本を編集'),
         ),
         body: Center(
@@ -49,6 +49,7 @@ class EditBookPage extends StatelessWidget {
                       ? () async {
                           try {
                             await model.update();
+
                             Navigator.of(context).pop(model.title);
                           } catch (e) {
                             final snackBar = SnackBar(
@@ -64,6 +65,7 @@ class EditBookPage extends StatelessWidget {
                         }
                       : null,
                   child: const Text("更新する"),
+
                 ),
               ],
             );

@@ -10,8 +10,6 @@ class AddBookPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
           title: const Text('本を追加'),
         ),
         body: Center(
