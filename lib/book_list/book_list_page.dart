@@ -4,7 +4,6 @@ import 'package:model_s4/book_list/book_list_model.dart';
 import 'package:model_s4/domain/book.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
 import '../edit_book/edit_book_page.dart';
 
 class BookListPage extends StatelessWidget {
@@ -19,7 +18,7 @@ class BookListPage extends StatelessWidget {
         key: scaffoldMessengerKey,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text("本一覧"),
+            title: const Text("やることリスト"),
             centerTitle: true,
           ),
           body: Consumer<BookListModel>(
@@ -163,7 +162,7 @@ class BookListPage extends StatelessWidget {
                     var snackBar = const SnackBar(
                       backgroundColor: Colors.green,
                       content: Text(
-                        '本を追加しました',
+                        'やることを追加しました',
                         textAlign: TextAlign.center,
                       ),
                     );

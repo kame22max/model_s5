@@ -10,14 +10,14 @@ class AddBookPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('本を追加'),
+          title: const Text('やることを追加'),
         ),
         body: Center(
           child: Consumer<AddBookModel>(builder: (context, model, child) {
             return Column(
               children: [
                 TextField(
-                  decoration: const InputDecoration(hintText: '本のタイトル'),
+                  decoration: const InputDecoration(hintText: 'やること'),
                   onChanged: (text) {
                     model.title = text;
                   },
@@ -26,7 +26,7 @@ class AddBookPage extends StatelessWidget {
                   height: 8,
                 ),
                 TextField(
-                  decoration: const InputDecoration(hintText: '本の著者'),
+                  decoration: const InputDecoration(hintText: '内容'),
                   onChanged: (text) {
                     model.author = text;
                   },

@@ -18,7 +18,7 @@ class EditBookPage extends StatelessWidget {
           centerTitle: true,
           // backgroundColor: Colors.transparent,
           // elevation: 0,
-          title: const Text('本を編集'),
+          title: const Text('やることを編集'),
         ),
         body: Center(
           child: Consumer<EditBookModel>(builder: (context, model, child) {
@@ -26,7 +26,7 @@ class EditBookPage extends StatelessWidget {
               children: [
                 TextField(
                   controller: model.titleController,
-                  decoration: const InputDecoration(hintText: '本のタイトル'),
+                  decoration: const InputDecoration(hintText: 'やること'),
                   onChanged: (text) {
                     model.setTitle(text);
                   },
@@ -36,7 +36,7 @@ class EditBookPage extends StatelessWidget {
                 ),
                 TextField(
                   controller: model.authorController,
-                  decoration: const InputDecoration(hintText: '本の著者'),
+                  decoration: const InputDecoration(hintText: '内容'),
                   onChanged: (text) {
                     model.setAuthor(text);
                   },
