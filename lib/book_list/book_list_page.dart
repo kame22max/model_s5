@@ -20,6 +20,14 @@ class BookListPage extends StatelessWidget {
           appBar: AppBar(
             title: const Text("やることリスト"),
             centerTitle: true,
+            actions: [
+              IconButton(
+                icon: Icon(Icons.person),
+                onPressed: () {
+                  //画面遷移
+                },
+              ),
+            ],
           ),
           body: Consumer<BookListModel>(
             builder: (context, model, child) {

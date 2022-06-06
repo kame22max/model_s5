@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:model_s4/book_list/book_list_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:model_s4/login/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.light(), // ダーク用テーマ
       themeMode: ThemeMode.system, // モードをシステム設定にする
       title: 'BookListSample',
-      home: BookListPage(),
+      home: const Login(),
     );
   }
 
