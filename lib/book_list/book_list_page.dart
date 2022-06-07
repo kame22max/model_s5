@@ -22,7 +22,7 @@ class BookListPage extends StatelessWidget {
             centerTitle: true,
             actions: [
               IconButton(
-                icon: Icon(Icons.person),
+                icon: const Icon(Icons.person),
                 onPressed: () {
                   //画面遷移
                 },

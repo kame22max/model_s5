@@ -5,14 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../book_list/book_list_page.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Kame_Login_Page extends StatefulWidget {
+  const Kame_Login_Page({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Kame_Login_Page> createState() => _Kame_Login_PageState();
 }
 
-class _LoginState extends State<Login> {
+class _Kame_Login_PageState extends State<Kame_Login_Page> {
 
   bool _isObscure = true;
 
