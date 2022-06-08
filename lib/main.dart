@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:model_s4/book_list/book_list_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:model_s4/login/kame_login_page.dart';
 
